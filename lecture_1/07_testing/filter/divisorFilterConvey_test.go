@@ -9,6 +9,9 @@ import (
 	"code-cadets-2021/lecture_1/07_testing/filter"
 )
 
+// točka . znači da prisupamo ovom paketu s točkom, sva imena i metode iz ovog paketa mi stavi u globalni workspace -> potencijalno opasno (npr. ako imamo dva paketa s istoimenom metodom)
+// možemo staviti i ime prije importa i onda s tim imenom referenciramo taj paket
+
 // NOTE - Convey infix in the function name is here just to prevent a name
 // clash with the method in `divisorFilter_test.go`
 func TestConveyGetDivisibleFromRange(t *testing.T) {

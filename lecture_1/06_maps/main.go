@@ -2,6 +2,7 @@ package main
 
 import "log"
 
+// map[tip ključa] tip vrijednosti
 func main() {
 	m := map[string]int{
 		"A": 5,
@@ -35,4 +36,11 @@ func main() {
 	}
 
 	log.Println(set)
+
+	// zapisivanje u mapu
+	m["D"] = 20
+	log.Println(m["D"])
+
+	// brisanje
+	delete(m, "D")
 }

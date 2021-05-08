@@ -1,4 +1,5 @@
 package filter_test
+// staviti u drugi package koji ima dodatak '_test' kako ne bi imali pristup privatnim varijablama našeg packagea
 
 import (
 	"testing"
@@ -20,6 +21,7 @@ func areSlicesEqual(first []int, second []int) bool {
 	return true
 }
 
+// testna metoda -> ime počinje s 'Test'
 func TestGetDivisibleFromRange(t *testing.T) {
 	for _, tc := range getTestCases() {
 		actualOutput, actualErr := filter.GetDivisibleFromRange(tc.inputStart, tc.inputEnd, tc.inputDivisor)

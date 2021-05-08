@@ -38,10 +38,11 @@ func linearBackoff(retry int) time.Duration {
 	return time.Duration(retry) * time.Second
 }
 
-// `main` function, entry-point of a Go program.
+// `main` function, entry-point of a Go program. Never takes arguments -> os.Args for arguments
 func main() {
 	// Calling `New()` from `pester` package to create an http client. Notice that by using the
 	// `:=` notation the type of the variable will be inferred.
+	// ':=' -> declaration and initialisation
 	httpClient := pester.New()
 
 	// Setting the struct's attribute.
