@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"strings"
 )
 
 type response struct {
@@ -36,8 +37,8 @@ func main() {
 		)
 	}
 
-	var decodedContent []response
-	err = json.Unmarshal(bodyContent, &decodedContent)
+	var examResults []response
+	err = json.Unmarshal(bodyContent, &examResults)
 	if err != nil {
 		log.Fatal(
 			errors.WithMessage(err, "unmarshalling the JSON body content"),
@@ -53,11 +54,10 @@ func main() {
 
 	defer f.Close()
 
-	for _, val := range decodedContent {
-		if val.Passed == true {
-			if contains(val.Skills, "Java") || contains(val.Skills, "Go") {
-				log.Printf("%v - %v", val.Name, val.Skills)
-				f.WriteString(fmt.Sprintf("%v - %v", val.Name, val.Skills) + "\n")
+	for _, result := range examResults {
+		if result.Passed == true {
+			if contains(result.Skills, "Java") || contains(result.Skills, "Go") {
+				f.WriteString(fmt.Sprintf("%s - %s", result.Name, strings.Join(result.Skills, ", ")) + "\n")
 			}
 		}
 	}
