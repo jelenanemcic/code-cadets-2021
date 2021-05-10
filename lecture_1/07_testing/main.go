@@ -16,7 +16,6 @@ func main() {
 	flag.IntVar(&countTo, "count-to", 10, "Value (inclusive) to count to")
 	flag.IntVar(&divisor, "divisor", 1, "The divisor used for filtering")
 
-	// za parsiranje command line argumenata
 
 	numbers, err := filter.GetDivisibleFromRange(countFrom, countTo, divisor)
 	if err != nil {
