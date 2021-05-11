@@ -5,23 +5,25 @@ import (
 	"github.com/pkg/errors"
 )
 
-func PlayFizzBuzz(start, end int) error {
+func PlayFizzBuzz(start, end int) ([]string, error) {
 
 	if start > end {
-		return errors.New("Value start is greater than the value end.")
+		return nil, errors.New("Value start is greater than the value end.")
 	}
+
+	var gameResult []string
 
 	for n := start; n <= end; n++ {
 		if n % 3 == 0 && n % 5 == 0 {
-			fmt.Printf("%s ", "FizzBuzz")
+			gameResult = append(gameResult, "FizzBuzz")
 		} else if n % 3 == 0 {
-			fmt.Printf("%s ", "Fizz")
+			gameResult = append(gameResult, "Fizz")
 		} else if n % 5 == 0 {
-			fmt.Printf("%s ", "Buzz")
+			gameResult = append(gameResult, "Buzz")
 		} else {
-			fmt.Printf("%d ", n)
+			gameResult = append(gameResult, fmt.Sprintf("%d", n))
 		}
 	}
 
-	return nil
+	return gameResult, nil
 }

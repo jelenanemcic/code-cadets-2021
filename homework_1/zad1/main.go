@@ -2,7 +2,9 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"log"
+	"strings"
 
 	"code-cadets-2021/homework_1/zad1/fizzbuzz"
 )
@@ -15,8 +17,10 @@ func main() {
 
 	flag.Parse()
 
-	err := fizzbuzz.PlayFizzBuzz(start, end)
+	result, err := fizzbuzz.PlayFizzBuzz(start, end)
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	fmt.Printf("%v", strings.Join(result, " "))
 }
