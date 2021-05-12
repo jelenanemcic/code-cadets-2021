@@ -1,14 +1,15 @@
 package main
 
 import (
-	"code-cadets-2021/homework_1/zad2/taxLibrary"
 	"fmt"
-	"github.com/pkg/errors"
 	"log"
 	"math"
 	"os"
 	"strconv"
 	"strings"
+
+	"code-cadets-2021/homework_1/zad2/taxLibrary"
+	"github.com/pkg/errors"
 )
 
 // program očekuje kao argumente N stringova, gdje je N proizvoljan
@@ -51,8 +52,6 @@ func main() {
 
 		classes = append(classes, class)
 	}
-
-	//	fmt.Printf("%v", classes)
 
 	tax, err := taxLibrary.CalculateTax(classes, int(value))
 	if err != nil {
