@@ -25,7 +25,7 @@ func TestPlayFizzBuzz(t *testing.T) {
 
 		if tc.expectingError {
 			if actualErr == nil {
-				t.Errorf("Expected an error but got `nil` error")
+				t.Errorf("Expected an error but got `nil` error.")
 			}
 		} else {
 			if actualErr != nil {

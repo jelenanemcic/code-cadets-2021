@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"github.com/pkg/errors"
 	"log"
 	"strings"
 
@@ -19,7 +20,9 @@ func main() {
 
 	result, err := fizzbuzz.PlayFizzBuzz(start, end)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal(
+			errors.WithMessage(err, "Error playing FizzBuzz."),
+		)
 	}
 
 	fmt.Printf("%v", strings.Join(result, " "))
