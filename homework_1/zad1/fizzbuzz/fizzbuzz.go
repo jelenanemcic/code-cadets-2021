@@ -11,7 +11,7 @@ import (
 func CalculateFizzBuzz(start, end int) ([]string, error) {
 
 	if start > end {
-		return nil, errors.New("Value start is greater than the value end.")
+		return nil, errors.New("value start is greater than the value end")
 	}
 
 	var gameResult []string

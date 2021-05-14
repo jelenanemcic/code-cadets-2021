@@ -21,7 +21,7 @@ func main() {
 	result, err := fizzbuzz.CalculateFizzBuzz(start, end)
 	if err != nil {
 		log.Fatal(
-			errors.WithMessage(err, "Error playing FizzBuzz."),
+			errors.WithMessage(err, "error playing FizzBuzz"),
 		)
 	}
 
