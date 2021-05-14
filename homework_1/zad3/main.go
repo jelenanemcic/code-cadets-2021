@@ -1,97 +1,73 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
-	"github.com/pkg/errors"
-	"github.com/sethgrid/pester"
-	"io/ioutil"
 	"log"
 	"strings"
+
+	"code-cadets-2021/homework_1/zad3/pokemonAPI"
+	"github.com/pkg/errors"
 )
-
-type pokemonInformation struct {
-	Name string
-	LocationAreaEncounters string `json:"location_area_encounters"`
-}
-
-type pokemonLocation struct {
-	LocationArea locationArea `json:"location_area"`
-}
-
-type locationArea struct {
-	Name string
-}
-
-const pokemonURL= "https://pokeapi.co/api/v2/pokemon/"
 
 func main() {
 
 	fmt.Println("Pokemon name or number:")
 
-	var pokemon string
-	_, err := fmt.Scanln(&pokemon)
+	var pokemonName string
+	_, err := fmt.Scanln(&pokemonName)
 	if err != nil {
 		log.Fatal(
-			errors.New("Error reading user input."),
+			errors.New("error reading user input"),
 		)
 	}
 
-	httpClient := pester.New()
-	httpResponse, err := httpClient.Get(pokemonURL + pokemon)
+	httpResponse, err := pokemonAPI.MakeHTTPRequest(pokemonName, true)
 	if err != nil {
 		log.Fatal(
-			errors.WithMessage(err, "Error in HTTP get towards pokemon API."),
+			errors.WithMessage(err, "error in HTTP get towards pokemonAPI API"),
 		)
 	}
 
-	bodyContent, err := ioutil.ReadAll(httpResponse.Body)
+	bodyContent, err := pokemonAPI.ReadContent(httpResponse)
 	if err != nil {
 		log.Fatal(
-			errors.WithMessage(err, "Error reading body of pokemon API response."),
+			errors.WithMessage(err, "error reading body of pokemonAPI API response"),
 		)
 	}
 
-
-	var pokemonInfo pokemonInformation
-	err = json.Unmarshal(bodyContent, &pokemonInfo)
+	pokemonInfo, err := pokemonAPI.GetPokemonInfo(bodyContent)
 	if err != nil {
 		log.Fatal(
-			errors.WithMessage(err, "Error unmarshalling the JSON body content."),
+			errors.WithMessage(err, "error unmarshalling the JSON body content"),
 		)
 	}
-
 	log.Printf("Pokemon name: %s", pokemonInfo.Name)
 
-	httpResponse, err = httpClient.Get(pokemonInfo.LocationAreaEncounters)
+	httpResponse, err = pokemonAPI.MakeHTTPRequest(pokemonInfo.LocationAreaEncounters, false)
 	if err != nil {
 		log.Fatal(
-			errors.WithMessage(err, "Error in HTTP get towards pokemon encounters API."),
+			errors.WithMessage(err, "error in HTTP get towards pokemonAPI encounters API"),
 		)
 	}
 
-	bodyContent, err = ioutil.ReadAll(httpResponse.Body)
+	bodyContent, err = pokemonAPI.ReadContent(httpResponse)
 	if err != nil {
 		log.Fatal(
-			errors.WithMessage(err, "Error reading body of pokemon encounters API response."),
+			errors.WithMessage(err, "error reading body of pokemonAPI encounters API response"),
 		)
 	}
 
-	var pokemonEncountersJSON []pokemonLocation
-
-	err = json.Unmarshal(bodyContent, &pokemonEncountersJSON)
+	pokemonLocations, err := pokemonAPI.GetPokemonLocations(bodyContent)
 	if err != nil {
 		log.Fatal(
-			errors.WithMessage(err, "Error unmarshalling the JSON body content."),
+			errors.WithMessage(err, "error unmarshalling the JSON body content"),
 		)
 	}
 
 	var pokemonEncounters []string
-
-	for _, location := range pokemonEncountersJSON {
+	for _, location := range pokemonLocations {
 		pokemonEncounters = append(pokemonEncounters, location.LocationArea.Name)
 	}
-
 	log.Printf("Pokemon encounters: %v", strings.Join(pokemonEncounters, ", "))
 
 }
