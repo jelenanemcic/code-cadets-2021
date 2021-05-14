@@ -3,11 +3,11 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/pkg/errors"
 	"log"
 	"strings"
 
 	"code-cadets-2021/homework_1/zad1/fizzbuzz"
+	"github.com/pkg/errors"
 )
 
 func main() {
@@ -18,7 +18,7 @@ func main() {
 
 	flag.Parse()
 
-	result, err := fizzbuzz.PlayFizzBuzz(start, end)
+	result, err := fizzbuzz.CalculateFizzBuzz(start, end)
 	if err != nil {
 		log.Fatal(
 			errors.WithMessage(err, "Error playing FizzBuzz."),

@@ -2,10 +2,13 @@ package fizzbuzz
 
 import (
 	"fmt"
+
 	"github.com/pkg/errors"
 )
 
-func PlayFizzBuzz(start, end int) ([]string, error) {
+// CalculateFizzBuzz expects two integers (the starting number and the ending number), and calculates the FizzBuzz output.
+// The return values are FizzBuzz string array and the encountered error (if there is one).
+func CalculateFizzBuzz(start, end int) ([]string, error) {
 
 	if start > end {
 		return nil, errors.New("Value start is greater than the value end.")

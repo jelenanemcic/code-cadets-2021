@@ -1,8 +1,9 @@
 package fizzbuzz_test
 
 import (
-	"code-cadets-2021/homework_1/zad1/fizzbuzz"
 	"testing"
+
+	"code-cadets-2021/homework_1/zad1/fizzbuzz"
 )
 
 func areSlicesEqual(first []string, second []string) bool {
@@ -21,7 +22,7 @@ func areSlicesEqual(first []string, second []string) bool {
 
 func TestPlayFizzBuzz(t *testing.T) {
 	for _, tc := range getTestCases() {
-		actualOutput, actualErr := fizzbuzz.PlayFizzBuzz(tc.inputStart, tc.inputEnd)
+		actualOutput, actualErr := fizzbuzz.CalculateFizzBuzz(tc.inputStart, tc.inputEnd)
 
 		if tc.expectingError {
 			if actualErr == nil {

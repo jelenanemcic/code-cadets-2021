@@ -43,6 +43,12 @@ func getTestCases() []testCase {
 
 			expectingError: true,
 		},
+		{
+			inputStart:   -10,
+			inputEnd:     -3,
+
+			expectedOutput: []string{"Buzz", "Fizz", "-8", "-7", "Fizz", "Buzz", "-4", "Fizz"},
+			expectingError: false,
+		},
 	}
 }
-
