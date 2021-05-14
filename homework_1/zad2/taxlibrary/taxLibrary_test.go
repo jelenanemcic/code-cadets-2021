@@ -1,17 +1,18 @@
-package taxLibrary_test
+package taxlibrary_test
 
 import (
-	"code-cadets-2021/homework_1/zad2/taxLibrary"
 	"testing"
+
+	"code-cadets-2021/homework_1/zad2/taxlibrary"
 )
 
 func TestCalculateTax(t *testing.T) {
 	for _, tc := range getTestCases() {
-		actualOutput, actualErr := taxLibrary.CalculateTax(tc.classes, tc.value)
+		actualOutput, actualErr := taxlibrary.CalculateTax(tc.classes, tc.value)
 
 		if tc.expectingError {
 			if actualErr == nil {
-				t.Errorf("Expected an error but got `nil` error.")
+				t.Errorf("Expected an error but got `nil` error")
 			}
 		} else {
 			if actualErr != nil {

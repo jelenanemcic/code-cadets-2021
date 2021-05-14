@@ -1,13 +1,14 @@
-package taxLibrary_test
+package taxlibrary_test
 
 import (
-	"code-cadets-2021/homework_1/zad2/taxLibrary"
 	"math"
+
+	"code-cadets-2021/homework_1/zad2/taxlibrary"
 )
 
 type testCase struct {
-	classes []taxLibrary.TaxClass
-	value int
+	classes []taxlibrary.TaxClass
+	value float64
 
 	expectedOutput float64
 	expectingError bool
@@ -16,7 +17,7 @@ type testCase struct {
 func getTestCases() []testCase {
 	return []testCase {
 		{
-			classes: []taxLibrary.TaxClass {
+			classes: []taxlibrary.TaxClass {
 				{
 					Start:      0,
 					End:        500,
@@ -44,7 +45,7 @@ func getTestCases() []testCase {
 			expectingError: false,
 		},
 		{
-			classes: []taxLibrary.TaxClass {
+			classes: []taxlibrary.TaxClass {
 				{
 					Start:      0,
 					End:        1000,
@@ -72,7 +73,7 @@ func getTestCases() []testCase {
 			expectingError: false,
 		},
 		{
-			classes: []taxLibrary.TaxClass {
+			classes: []taxlibrary.TaxClass {
 				{
 					Start:      0,
 					End:        1000,
@@ -93,7 +94,7 @@ func getTestCases() []testCase {
 			expectingError: true,
 		},
 		{
-			classes: []taxLibrary.TaxClass {
+			classes: []taxlibrary.TaxClass {
 				{
 					Start:      0,
 					End:        1000,
@@ -119,7 +120,7 @@ func getTestCases() []testCase {
 			expectingError: true,
 		},
 		{
-			classes: []taxLibrary.TaxClass {
+			classes: []taxlibrary.TaxClass {
 				{
 					Start:      0,
 					End:        1000,
@@ -144,6 +145,28 @@ func getTestCases() []testCase {
 
 			expectingError: true,
 		},
+		{
+			classes: []taxlibrary.TaxClass {
+				{
+					Start:      0,
+					End:        1500.5,
+					Percentage: 0.1,
+				},
+				{
+					Start:      1500.5,
+					End:        4000,
+					Percentage: 0.2,
+				},
+				{
+					Start:      4000,
+					End:        math.MaxInt64,
+					Percentage: 0.5,
+				},
+			},
+			value: 5250.5,
+
+			expectedOutput: 1275.2,
+			expectingError: false,
+		},
 	}
 }
-
