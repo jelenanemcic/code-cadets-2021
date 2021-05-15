@@ -22,9 +22,11 @@ func main() {
 func sayHelloEachSecond(ctx context.Context, name string) {
 	for {
 		select {
+		// ako je kontekst gotov
 		case <-ctx.Done():
 			fmt.Println("finished", name)
 			return
+		// time.After vraća channel koji će biti closan za sekundu
 		case <-time.After(time.Second):
 			fmt.Println("hello", name)
 		}

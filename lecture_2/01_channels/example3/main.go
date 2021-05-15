@@ -29,9 +29,11 @@ func main() {
 		ch <- i
 	}
 
-	// close(ch)
+	 close(ch)
 
 	// range iteration
+	// nakon što nema što za pročitati -> fatal error
+	// range -> idi dok kanal nije zatvoren -> zato treba prije close(ch)
 	for x := range ch {
 		fmt.Print(x)
 	}
@@ -49,16 +51,19 @@ func main() {
 	v1, ok1 := <-ch2
 	fmt.Println(v1, ok1)
 
-	// close(ch2)
+	close(ch2)
 
 	v2, ok2 := <-ch2
 	fmt.Println(v2, ok2)
 
+	// deadlock ako nismo closali prije -> inače: 0 false
+	// iz closanih kanala možemo čitati beskonačno dugo -> 0 false
 	v3, ok3 := <-ch2
 	fmt.Println(v3, ok3)
 
 	v4, ok4 := <-ch2
 	fmt.Println(v4, ok4)
 
+	// ne možemo dvaput closati isti kanal, samo jedna dretva može zatvoriti kanal
 	// close(ch2)
 }

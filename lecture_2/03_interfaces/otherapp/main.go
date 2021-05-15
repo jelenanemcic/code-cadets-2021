@@ -33,6 +33,7 @@ func pushPopPrint(stack Stack, numbers []int) {
 	}
 }
 
+// definiramo funkcije koje struktura mora sadržavati kao interface
 type Stack interface {
 	Push(a int)
 	Pop() (int, bool)

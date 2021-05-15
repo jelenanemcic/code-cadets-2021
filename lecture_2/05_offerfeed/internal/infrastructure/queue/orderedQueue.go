@@ -3,10 +3,11 @@ package queue
 import (
 	"context"
 	"encoding/json"
+	"fmt"
+	"log"
 	"os"
 
 	"code-cadets-2021/lecture_2/05_offerfeed/internal/domain/models"
-
 	"github.com/pkg/errors"
 )
 
@@ -17,10 +18,11 @@ type OrderedQueue struct {
 
 func NewOrderedQueue() *OrderedQueue {
 	return &OrderedQueue{
-		source: make(chan models.Odd, 10),
+		source: make(chan models.Odd),
 	}
 }
 
+// metoda nad strukturom OrderedQueue (poziva se kao queue.Start())
 func (o *OrderedQueue) Start(ctx context.Context) error {
 	// ignore ctx parameter, we will use it later :)
 
@@ -34,6 +36,26 @@ func (o *OrderedQueue) Start(ctx context.Context) error {
 	//
 	// finally:
 	// - store queue slice to disk
+	defer fmt.Println("Gasi se queue.")
+
+	err := o.loadFromFile()
+	if err !=  nil {
+		log.Fatal(
+			errors.WithMessage(err, "error loading from file"),
+		)
+	}
+
+	for x := range o.source {
+		o.queue = append(o.queue, x)
+	}
+
+	err = o.storeToFile()
+	if err !=  nil {
+		log.Fatal(
+			errors.WithMessage(err, "error storing to file"),
+		)
+	}
+
 	return nil
 }
 

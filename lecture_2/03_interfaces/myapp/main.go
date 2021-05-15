@@ -23,6 +23,8 @@ func pushing(pusher Pusher) {
 	log.Println(pusher)
 }
 
+// stacklibfer nasljeđuje Pusher jer ima implementiranu metodu Push
+// metode koje ne želimo koristiti samo ne napišemo u interfaceu
 type Pusher interface {
 	Push(a int)
 }

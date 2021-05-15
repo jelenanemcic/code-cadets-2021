@@ -3,6 +3,7 @@ package main
 import "fmt"
 
 func main() {
+	// ako nemamo buffer -> dvije dretve moraju u isto vrijeme raditi, jedna čita, druga piše
 	ch := make(chan int, 3)
 
 	ch <- 1
@@ -19,6 +20,7 @@ func main() {
 	fmt.Print(<-ch)
 	fmt.Println()
 
+	// pri pokušaju pisanja četvrte poruke, dretva se blokira
 	ch <- 6
 	ch <- 7
 	ch <- 8

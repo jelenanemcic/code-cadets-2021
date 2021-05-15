@@ -10,10 +10,13 @@ const (
 )
 
 func main() {
+	// waitGroup je kao mutex
 	wg := &sync.WaitGroup{}
 	// we need to initialise wait group with number of goroutines
+	// toliko dretvi main dretva čeka
 	wg.Add(size)
 
+	// "go" -> stvara gorutinu
 	for i := 0; i < size; i++ {
 		go hello(i, wg)
 	}
