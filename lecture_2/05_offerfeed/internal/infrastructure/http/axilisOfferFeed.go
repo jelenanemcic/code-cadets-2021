@@ -19,6 +19,7 @@ type AxilisOfferFeed struct {
 	updates    chan models.Odd
 }
 
+// ako ne definiramo buffer za kanal, dvije rutine moraju istovremeno čitati i pisati iz njega, inače su blokirane
 func NewAxilisOfferFeed(httpClient http.Client) *AxilisOfferFeed {
 	return &AxilisOfferFeed{
 		httpClient: httpClient,
