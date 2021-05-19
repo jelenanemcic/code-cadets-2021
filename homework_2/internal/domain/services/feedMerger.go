@@ -8,16 +8,16 @@ import (
 )
 
 type FeedMerger struct {
-	updates    chan models.Odd
-	feed []Feed
+	updates chan models.Odd
+	feeds   []Feed
 }
 
 func NewFeedMerger(
-	feed []Feed,
+	feeds []Feed,
 ) *FeedMerger {
 	return &FeedMerger{
-		updates:    make(chan models.Odd),
-		feed: feed,
+		updates: make(chan models.Odd),
+		feeds:   feeds,
 	}
 }
 
@@ -28,9 +28,9 @@ func (f *FeedMerger) Start(ctx context.Context) error {
 	defer log.Printf("shutting down %s", f)
 
 	var wg sync.WaitGroup
-	wg.Add(len(f.feed))
+	wg.Add(len(f.feeds))
 
-	for _, feed := range f.feed {
+	for _, feed := range f.feeds {
 		go func(c chan models.Odd, out chan models.Odd) {
 			for v := range c {
 				out <- v

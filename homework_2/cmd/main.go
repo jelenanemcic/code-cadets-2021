@@ -9,9 +9,10 @@ import (
 
 func main() {
 	signalHandler := bootstrap.SignalHandler()
+	httpClient := bootstrap.HttpClient()
 
-	feed1 := bootstrap.AxilisOfferFeed()
-	feed2 := bootstrap.AxilisOfferFeed2()
+	feed1 := bootstrap.AxilisOfferFeed(httpClient)
+	feed2 := bootstrap.AxilisOfferFeed2(httpClient)
 	feed := bootstrap.FeedMerger(feed1, feed2)
 	queue := bootstrap.OrderedQueue()
 	processingService := bootstrap.FeedProcessingService(feed, queue)

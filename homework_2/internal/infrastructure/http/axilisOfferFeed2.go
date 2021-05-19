@@ -71,7 +71,12 @@ func (a *AxilisOfferFeed2) processResponse(ctx context.Context, response *http.R
 
 	for _, line := range lines {
 		fields := strings.Split(line, ",")
-		coeff, _ := strconv.ParseFloat(fields[3], 64)
+		coeff, err := strconv.ParseFloat(fields[3], 64)
+		if err != nil {
+			log.Println("axilis offer feed 2, parsing coefficient", err)
+			continue
+		}
+
 		odd := models.Odd{
 			Id:          fields[0],
 			Name:        fields[1],
