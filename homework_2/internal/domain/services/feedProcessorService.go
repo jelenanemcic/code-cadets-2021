@@ -4,7 +4,7 @@ import (
 	"context"
 	"log"
 
-	"code-cadets-2021/lecture_2/06_offerfeed/internal/domain/models"
+	"code-cadets-2021/homework_2/internal/domain/models"
 )
 
 type FeedProcessorService struct {

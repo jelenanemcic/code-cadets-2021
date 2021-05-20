@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"time"
 
-	"code-cadets-2021/lecture_2/06_offerfeed/internal/domain/models"
+	"code-cadets-2021/homework_2/internal/domain/models"
 )
 
 const axilisFeedURL = "http://18.193.121.232/axilis-feed"
@@ -73,13 +73,10 @@ func (a *AxilisOfferFeed) processResponse(ctx context.Context, response *http.Re
 			Timestamp:   time.Now(),
 		}
 
-		// IMPORTANT SELECT!!!
-		// show an example
 		select {
 		case <-ctx.Done():
 			return
 		case a.updates <- odd:
-			// do nothing
 		}
 	}
 }
