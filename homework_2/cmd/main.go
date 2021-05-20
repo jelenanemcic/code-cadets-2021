@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 
-	"code-cadets-2021/lecture_2/06_offerfeed/cmd/bootstrap"
-	"code-cadets-2021/lecture_2/06_offerfeed/internal/tasks"
+	"code-cadets-2021/homework_2/cmd/bootstrap"
+	"code-cadets-2021/homework_2/internal/tasks"
 )
 
 func main() {

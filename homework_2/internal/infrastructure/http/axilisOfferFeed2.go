@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"code-cadets-2021/lecture_2/06_offerfeed/internal/domain/models"
+	"code-cadets-2021/homework_2/internal/domain/models"
 )
 
 const axilisFeedURL2 = "http://18.193.121.232/axilis-feed-2"

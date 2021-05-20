@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"time"
 
-	"code-cadets-2021/lecture_2/06_offerfeed/internal/domain/models"
+	"code-cadets-2021/homework_2/internal/domain/models"
 )
 
 const axilisFeedURL = "http://18.193.121.232/axilis-feed"

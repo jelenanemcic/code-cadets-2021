@@ -1,10 +1,11 @@
 package services
 
 import (
-	"code-cadets-2021/lecture_2/06_offerfeed/internal/domain/models"
 	"context"
 	"log"
 	"sync"
+
+	"code-cadets-2021/homework_2/internal/domain/models"
 )
 
 type FeedMerger struct {
