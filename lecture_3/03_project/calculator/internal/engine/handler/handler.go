@@ -78,13 +78,24 @@ func (h *Handler) HandleEventUpdates(
 			}
 
 			for _, domainBet := range domainBets {
-				log.Printf("%v\n", domainBet)
+				var resultingBet rabbitmqmodels.BetCalculated
+
 				// Calculate the resulting calculated bet, which should be published.
-				resultingBet := rabbitmqmodels.BetCalculated{
-					Id:     domainBet.Id,
-					Status: eventUpdate.Outcome,
-					Payout: domainBet.Payment,
+				if eventUpdate.Outcome == "won" {
+					resultingBet = rabbitmqmodels.BetCalculated{
+						Id:     domainBet.Id,
+						Status: eventUpdate.Outcome,
+						Payout: domainBet.Payment,
+					}
+				} else {
+					resultingBet = rabbitmqmodels.BetCalculated{
+						Id:     domainBet.Id,
+						Status: eventUpdate.Outcome,
+						Payout: 0,
+					}
 				}
+
+				log.Printf("%v\n", resultingBet)
 
 				select {
 				case resultingBets <- resultingBet:
