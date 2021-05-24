@@ -98,6 +98,7 @@ func (h *Handler) HandleBetsCalculated(
 			// Update the domain bet based on incoming changes.
 			domainBet.Status = betCalculated.Status
 			domainBet.Payout = betCalculated.Payout
+			log.Printf("%v\n", domainBet)
 
 			// Update the domain bet into the repository.
 			err = h.betRepository.UpdateBet(ctx, domainBet)
@@ -107,21 +108,21 @@ func (h *Handler) HandleBetsCalculated(
 			}
 
 			// Calculate the resulting bet, which should be published.
-			resultingBet := rabbitmqmodels.Bet{
-				Id:                   domainBet.Id,
-				CustomerId:           domainBet.CustomerId,
-				Status:               domainBet.Status,
-				SelectionId:          domainBet.SelectionId,
-				SelectionCoefficient: domainBet.SelectionCoefficient,
-				Payment:              domainBet.Payment,
-				Payout:               domainBet.Payout,
-			}
+			//			resultingBet := rabbitmqmodels.Bet{
+			//				Id:                   domainBet.Id,
+			//				CustomerId:           domainBet.CustomerId,
+			//				Status:               domainBet.Status,
+			//				SelectionId:          domainBet.SelectionId,
+			//				SelectionCoefficient: domainBet.SelectionCoefficient,
+			//				Payment:              domainBet.Payment,
+			//				Payout:               domainBet.Payout,
+			//			}
 
-			select {
-			case resultingBets <- resultingBet:
-			case <-ctx.Done():
-				return
-			}
+			//			select {
+			//			case resultingBets <- resultingBet:
+			//			case <-ctx.Done():
+			//				return
+			//			}
 		}
 	}()
 
