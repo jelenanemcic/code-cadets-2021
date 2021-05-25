@@ -8,17 +8,17 @@ import (
 
 // Publisher offers methods for publishing into output queues.
 type Publisher struct {
-	betPublisher BetPublisher
+	betCalculatedPublisher BetCalculatedPublisher
 }
 
 // New creates and returns a new Publisher.
-func New(betPublisher BetPublisher) *Publisher {
+func New(betPublisher BetCalculatedPublisher) *Publisher {
 	return &Publisher{
-		betPublisher: betPublisher,
+		betCalculatedPublisher: betPublisher,
 	}
 }
 
 // PublishBetsCalculated publishes into bets-calculated queue.
 func (p *Publisher) PublishBetsCalculated(ctx context.Context, bets <-chan rabbitmqmodels.BetCalculated) {
-	p.betPublisher.Publish(ctx, bets)
+	p.betCalculatedPublisher.Publish(ctx, bets)
 }

@@ -96,7 +96,7 @@ func newBetPublisher(channel rabbitmq.Channel) *rabbitmq.BetPublisher {
 	return betPublisher
 }
 
-func newPublisher(betPublisher publisher.BetPublisher) *publisher.Publisher {
+func newPublisher(betPublisher publisher.BetCalculatedPublisher) *publisher.Publisher {
 	return publisher.New(betPublisher)
 }
 

@@ -95,36 +95,38 @@ func (h *Handler) HandleBetsCalculated(
 				continue
 			}
 
-			// Update the domain bet based on incoming changes.
-			domainBet.Status = betCalculated.Status
-			domainBet.Payout = betCalculated.Payout
-			log.Printf("%v\n", domainBet)
+			// If the bet has changed in any way, update it and publish it.
+			if (domainBet.Status != betCalculated.Status) || (domainBet.Payout != betCalculated.Payout) {
+				// Update the domain bet based on incoming changes.
+				domainBet.Status = betCalculated.Status
+				domainBet.Payout = betCalculated.Payout
+				log.Printf("%v\n", domainBet)
 
-			// Update the domain bet into the repository.
-			err = h.betRepository.UpdateBet(ctx, domainBet)
-			if err != nil {
-				log.Println("Failed to update bet, error: ", err)
-				continue
+				// Update the domain bet into the repository.
+				err = h.betRepository.UpdateBet(ctx, domainBet)
+				if err != nil {
+					log.Println("Failed to update bet, error: ", err)
+					continue
+				}
+
+				// Calculate the resulting bet, which should be published.
+				resultingBet := rabbitmqmodels.Bet{
+					Id:                   domainBet.Id,
+					CustomerId:           domainBet.CustomerId,
+					Status:               domainBet.Status,
+					SelectionId:          domainBet.SelectionId,
+					SelectionCoefficient: domainBet.SelectionCoefficient,
+					Payment:              domainBet.Payment,
+					Payout:               domainBet.Payout,
+				}
+
+				select {
+				case resultingBets <- resultingBet:
+				case <-ctx.Done():
+					return
+				}
 			}
-
-			// Calculate the resulting bet, which should be published.
-			//			resultingBet := rabbitmqmodels.Bet{
-			//				Id:                   domainBet.Id,
-			//				CustomerId:           domainBet.CustomerId,
-			//				Status:               domainBet.Status,
-			//				SelectionId:          domainBet.SelectionId,
-			//				SelectionCoefficient: domainBet.SelectionCoefficient,
-			//				Payment:              domainBet.Payment,
-			//				Payout:               domainBet.Payout,
-			//			}
-
-			//			select {
-			//			case resultingBets <- resultingBet:
-			//			case <-ctx.Done():
-			//				return
-			//			}
 		}
 	}()
-
 	return resultingBets
 }
