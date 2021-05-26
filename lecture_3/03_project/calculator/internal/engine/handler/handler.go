@@ -89,7 +89,7 @@ func (h *Handler) HandleEventUpdates(
 			log.Println("Processing event update, selectionId:", eventUpdate.Id)
 
 			// Fetch all domain bets with this selectionID.
-			domainBets, err := h.betRepository.GetBetBySelectionID(ctx, eventUpdate.Id)
+			domainBets, err := h.betRepository.GetBetsBySelectionID(ctx, eventUpdate.Id)
 			if err != nil {
 				log.Println("Failed to fetch calculated bets, error: ", err)
 				continue
@@ -116,7 +116,7 @@ func (h *Handler) HandleEventUpdates(
 						Payout: 0,
 					}
 				} else {
-					log.Fatalf("Wrongly defined outcome: %s", eventUpdate.Outcome)
+					log.Printf("Wrongly defined outcome: %s", eventUpdate.Outcome)
 				}
 
 				log.Printf("%v\n", resultingBet)

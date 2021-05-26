@@ -113,10 +113,10 @@ func (r *BetRepository) queryGetBetByID(ctx context.Context, id string) (storage
 	}, nil
 }
 
-// GetBetBySelectionID fetches all bets from the database that have provided selectionId
+// GetBetsBySelectionID fetches all bets from the database that have provided selectionId
 // and returns them. The second returned value indicates whether the bet exists in DB.
 // If the bet does not exist, an error will not be returned.
-func (r *BetRepository) GetBetBySelectionID(ctx context.Context, selectionId string) ([]domainmodels.Bet, error) {
+func (r *BetRepository) GetBetsBySelectionID(ctx context.Context, selectionId string) ([]domainmodels.Bet, error) {
 	storageBets, err := r.queryGetBetBySelectionID(ctx, selectionId)
 	if err == sql.ErrNoRows {
 		return []domainmodels.Bet{}, nil
