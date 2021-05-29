@@ -49,6 +49,7 @@ func (h *Handler) HandleBets(
 					SelectionCoefficient: bet.SelectionCoefficient,
 					Payment:              bet.Payment,
 				}
+				log.Printf("%s\n", bet.SelectionId)
 
 				// Insert the bet into the repository.
 				err := h.betRepository.InsertBet(ctx, domainBet)
