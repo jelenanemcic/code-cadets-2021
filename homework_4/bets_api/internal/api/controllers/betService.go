@@ -7,7 +7,7 @@ import (
 
 // BetService implements bet related functions.
 type BetService interface {
-	GetBetById(ctx *gin.Context) (models.Bet, bool, error)
-	GetBetsByUser(ctx *gin.Context) ([]models.Bet, error)
-	GetBetsByStatus(ctx *gin.Context) ([]models.Bet, error)
+	GetBetById(ctx *gin.Context) (models.BetReduced, bool, error)
+	GetBetsByUser(ctx *gin.Context) ([]models.BetReduced, error)
+	GetBetsByStatus(ctx *gin.Context) ([]models.BetReduced, error)
 }

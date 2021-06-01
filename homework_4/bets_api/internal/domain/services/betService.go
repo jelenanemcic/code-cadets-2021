@@ -20,22 +20,22 @@ func NewBetService(repository sqlite.BetRepository) *BetService {
 }
 
 //GetBetById returns a bet with the specific id.
-func (e BetService) GetBetById(ctx *gin.Context) (models.Bet, bool, error) {
+func (e BetService) GetBetById(ctx *gin.Context) (models.BetReduced, bool, error) {
 	id := ctx.Param("id")
 	return e.betRepository.GetBetByID(ctx, id)
 }
 
 //GetBetsByUser returns all bets with the specific user id.
-func (e BetService) GetBetsByUser(ctx *gin.Context) ([]models.Bet, error) {
+func (e BetService) GetBetsByUser(ctx *gin.Context) ([]models.BetReduced, error) {
 	userId := ctx.Param("id")
 	return e.betRepository.GetBetsByUserID(ctx, userId)
 }
 
 //GetBetsByStatus returns all bets with the specific status.
-func (e BetService) GetBetsByStatus(ctx *gin.Context) ([]models.Bet, error) {
+func (e BetService) GetBetsByStatus(ctx *gin.Context) ([]models.BetReduced, error) {
 	status := ctx.Query("status")
 	if status != "won" && status != "lost" && status != "active" {
-		return []models.Bet{}, errors.New("invalid status")
+		return []models.BetReduced{}, errors.New("invalid status")
 	}
 	return e.betRepository.GetBetsByStatus(ctx, status)
 }

@@ -83,16 +83,16 @@ func (r *BetRepository) queryUpdateBet(ctx context.Context, bet storagemodels.Be
 
 // GetBetByID fetches a bet from the database and returns it. The second returned value indicates
 // whether the bet exists in DB. If the bet does not exist, an error will not be returned.
-func (r *BetRepository) GetBetByID(ctx context.Context, id string) (domainmodels.Bet, bool, error) {
+func (r *BetRepository) GetBetByID(ctx context.Context, id string) (domainmodels.BetReduced, bool, error) {
 	storageBet, err := r.queryGetBetByID(ctx, id)
 	if err == sql.ErrNoRows {
-		return domainmodels.Bet{}, false, nil
+		return domainmodels.BetReduced{}, false, nil
 	}
 	if err != nil {
-		return domainmodels.Bet{}, false, errors.Wrap(err, "bet repository failed to get a bet with id: "+id)
+		return domainmodels.BetReduced{}, false, errors.Wrap(err, "bet repository failed to get a bet with id: "+id)
 	}
 
-	domainBet := r.betMapper.MapStorageBetToDomainBet(storageBet)
+	domainBet := r.betMapper.MapStorageBetToDomainBetReduced(storageBet)
 	return domainBet, true, nil
 }
 
@@ -135,18 +135,18 @@ func (r *BetRepository) queryGetBetByID(ctx context.Context, id string) (storage
 }
 
 // GetBetsByUserID fetches all bets from the database with specific user id and returns them.
-func (r *BetRepository) GetBetsByUserID(ctx context.Context, userId string) ([]domainmodels.Bet, error) {
+func (r *BetRepository) GetBetsByUserID(ctx context.Context, userId string) ([]domainmodels.BetReduced, error) {
 	storageBets, err := r.queryGetBetsByUserID(ctx, userId)
 	if err == sql.ErrNoRows {
-		return []domainmodels.Bet{}, nil
+		return []domainmodels.BetReduced{}, nil
 	}
 	if err != nil {
-		return []domainmodels.Bet{}, errors.Wrap(err, "bet repository failed to get bets with user id: "+userId)
+		return []domainmodels.BetReduced{}, errors.Wrap(err, "bet repository failed to get bets with user id: "+userId)
 	}
 
-	var domainBets []domainmodels.Bet
+	var domainBets []domainmodels.BetReduced
 	for _, storageBet := range storageBets {
-		domainBets = append(domainBets, r.betMapper.MapStorageBetToDomainBet(storageBet))
+		domainBets = append(domainBets, r.betMapper.MapStorageBetToDomainBetReduced(storageBet))
 	}
 
 	return domainBets, nil
@@ -195,18 +195,18 @@ func (r *BetRepository) queryGetBetsByUserID(ctx context.Context, userId string)
 }
 
 // GetBetsByStatus fetches all bets from the database with specific status and returns them.
-func (r *BetRepository) GetBetsByStatus(ctx context.Context, status string) ([]domainmodels.Bet, error) {
+func (r *BetRepository) GetBetsByStatus(ctx context.Context, status string) ([]domainmodels.BetReduced, error) {
 	storageBets, err := r.queryGetBetsByStatus(ctx, status)
 	if err == sql.ErrNoRows {
-		return []domainmodels.Bet{}, nil
+		return []domainmodels.BetReduced{}, nil
 	}
 	if err != nil {
-		return []domainmodels.Bet{}, errors.Wrap(err, "bet repository failed to get bets with status: "+status)
+		return []domainmodels.BetReduced{}, errors.Wrap(err, "bet repository failed to get bets with status: "+status)
 	}
 
-	var domainBets []domainmodels.Bet
+	var domainBets []domainmodels.BetReduced
 	for _, storageBet := range storageBets {
-		domainBets = append(domainBets, r.betMapper.MapStorageBetToDomainBet(storageBet))
+		domainBets = append(domainBets, r.betMapper.MapStorageBetToDomainBetReduced(storageBet))
 	}
 
 	return domainBets, nil

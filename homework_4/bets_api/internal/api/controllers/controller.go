@@ -28,7 +28,7 @@ func (e *Controller) BetByIdHandler() gin.HandlerFunc {
 			return
 		}
 		if !exists {
-			ctx.String(http.StatusNotFound, "bet with this ID does not exist.")
+			ctx.String(http.StatusNotFound, "there is no bet with this id.")
 			return
 		}
 
@@ -46,7 +46,7 @@ func (e *Controller) BetsByUserHandler() gin.HandlerFunc {
 			return
 		}
 		if len(bets) == 0 {
-			ctx.String(http.StatusNotFound, "there are no bets with this userID.")
+			ctx.String(http.StatusNotFound, "there are no bets with this user id.")
 			return
 		}
 
@@ -65,7 +65,7 @@ func (e *Controller) BetsByStatusHandler() gin.HandlerFunc {
 			return
 		}
 		if len(bets) == 0 {
-			ctx.String(http.StatusNotFound, "there are no bets with status.")
+			ctx.String(http.StatusNotFound, "there are no bets with this status.")
 			return
 		}
 

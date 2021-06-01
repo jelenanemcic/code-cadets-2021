@@ -43,3 +43,16 @@ func (m *BetMapper) MapStorageBetToDomainBet(storageBet storagemodels.Bet) domai
 		Payout:               float64(storageBet.Payout) / 100,
 	}
 }
+
+// MapStorageBetToDomainBetReduced maps the given storage bet into domain bet reduced. Floating point values will
+// be converted from corresponding integer values of the storage bet by dividing them with 100.
+func (m *BetMapper) MapStorageBetToDomainBetReduced(storageBet storagemodels.Bet) domainmodels.BetReduced {
+	return domainmodels.BetReduced{
+		Id:                   storageBet.Id,
+		Status:               storageBet.Status,
+		SelectionId:          storageBet.SelectionId,
+		SelectionCoefficient: float64(storageBet.SelectionCoefficient) / 100,
+		Payment:              float64(storageBet.Payment) / 100,
+		Payout:               float64(storageBet.Payout) / 100,
+	}
+}
