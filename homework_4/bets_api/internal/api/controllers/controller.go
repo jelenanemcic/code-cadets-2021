@@ -18,7 +18,7 @@ func NewController(betService BetService) *Controller {
 	}
 }
 
-// BetByIdHandler handles bet by id request.
+// BetByIdHandler handles betById request.
 func (e *Controller) BetByIdHandler() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		bet, exists, err := e.betService.GetBetById(ctx)
