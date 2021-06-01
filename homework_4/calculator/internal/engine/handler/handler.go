@@ -4,8 +4,8 @@ import (
 	"context"
 	"log"
 
-	domainmodels "github.com/superbet-group/code-cadets-2021/lecture_3/03_project/calculator/internal/domain/models"
-	rabbitmqmodels "github.com/superbet-group/code-cadets-2021/lecture_3/03_project/calculator/internal/infrastructure/rabbitmq/models"
+	domainmodels "github.com/jelenanemcic/code-cadets-2021/homework_4/calculator/internal/domain/models"
+	rabbitmqmodels "github.com/jelenanemcic/code-cadets-2021/homework_4/calculator/internal/infrastructure/rabbitmq/models"
 )
 
 // Handler handles bets and event updates.

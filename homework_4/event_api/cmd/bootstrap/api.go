@@ -1,13 +1,13 @@
 package bootstrap
 
 import (
+	"github.com/jelenanemcic/code-cadets-2021/homework_4/event_api/cmd/config"
+	"github.com/jelenanemcic/code-cadets-2021/homework_4/event_api/internal/api"
+	"github.com/jelenanemcic/code-cadets-2021/homework_4/event_api/internal/api/controllers"
+	"github.com/jelenanemcic/code-cadets-2021/homework_4/event_api/internal/api/controllers/validators"
+	"github.com/jelenanemcic/code-cadets-2021/homework_4/event_api/internal/domain/services"
+	"github.com/jelenanemcic/code-cadets-2021/homework_4/event_api/internal/infrastructure/rabbitmq"
 	"github.com/streadway/amqp"
-	"github.com/superbet-group/code-cadets-2021/lecture_4/01_event_api/cmd/config"
-	"github.com/superbet-group/code-cadets-2021/lecture_4/01_event_api/internal/api"
-	"github.com/superbet-group/code-cadets-2021/lecture_4/01_event_api/internal/api/controllers"
-	"github.com/superbet-group/code-cadets-2021/lecture_4/01_event_api/internal/api/controllers/validators"
-	"github.com/superbet-group/code-cadets-2021/lecture_4/01_event_api/internal/domain/services"
-	"github.com/superbet-group/code-cadets-2021/lecture_4/01_event_api/internal/infrastructure/rabbitmq"
 )
 
 func newEventUpdateValidator() *validators.EventUpdateValidator {

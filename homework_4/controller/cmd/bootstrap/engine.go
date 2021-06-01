@@ -1,14 +1,14 @@
 package bootstrap
 
 import (
-	"github.com/superbet-group/code-cadets-2021/lecture_3/03_project/controller/cmd/config"
-	"github.com/superbet-group/code-cadets-2021/lecture_3/03_project/controller/internal/domain/mappers"
-	"github.com/superbet-group/code-cadets-2021/lecture_3/03_project/controller/internal/engine"
-	"github.com/superbet-group/code-cadets-2021/lecture_3/03_project/controller/internal/engine/consumer"
-	"github.com/superbet-group/code-cadets-2021/lecture_3/03_project/controller/internal/engine/handler"
-	"github.com/superbet-group/code-cadets-2021/lecture_3/03_project/controller/internal/engine/publisher"
-	"github.com/superbet-group/code-cadets-2021/lecture_3/03_project/controller/internal/infrastructure/rabbitmq"
-	"github.com/superbet-group/code-cadets-2021/lecture_3/03_project/controller/internal/infrastructure/sqlite"
+	"github.com/jelenanemcic/code-cadets-2021/homework_4/controller/cmd/config"
+	"github.com/jelenanemcic/code-cadets-2021/homework_4/controller/internal/domain/mappers"
+	"github.com/jelenanemcic/code-cadets-2021/homework_4/controller/internal/engine"
+	"github.com/jelenanemcic/code-cadets-2021/homework_4/controller/internal/engine/consumer"
+	"github.com/jelenanemcic/code-cadets-2021/homework_4/controller/internal/engine/handler"
+	"github.com/jelenanemcic/code-cadets-2021/homework_4/controller/internal/engine/publisher"
+	"github.com/jelenanemcic/code-cadets-2021/homework_4/controller/internal/infrastructure/rabbitmq"
+	"github.com/jelenanemcic/code-cadets-2021/homework_4/controller/internal/infrastructure/sqlite"
 )
 
 func newBetReceivedConsumer(channel rabbitmq.Channel) *rabbitmq.BetReceivedConsumer {

@@ -3,9 +3,9 @@ package main
 import (
 	"log"
 
-	"github.com/superbet-group/code-cadets-2021/lecture_4/01_event_api/cmd/bootstrap"
-	"github.com/superbet-group/code-cadets-2021/lecture_4/01_event_api/cmd/config"
-	"github.com/superbet-group/code-cadets-2021/lecture_4/01_event_api/internal/tasks"
+	"github.com/jelenanemcic/code-cadets-2021/homework_4/event_api/cmd/bootstrap"
+	"github.com/jelenanemcic/code-cadets-2021/homework_4/event_api/cmd/config"
+	"github.com/jelenanemcic/code-cadets-2021/homework_4/event_api/internal/tasks"
 )
 
 func main() {

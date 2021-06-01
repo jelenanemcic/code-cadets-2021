@@ -1,4 +1,4 @@
-module github.com/superbet-group/code-cadets-2021/lecture_3/03_project/dbinitializer
+module github.com/jelenanemcic/code-cadets-2021/homework_4/dbinitializer
 
 go 1.14
 

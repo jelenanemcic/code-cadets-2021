@@ -1,4 +1,4 @@
-module github.com/superbet-group/code-cadets-2021/lecture_3/03_project/controller
+module github.com/jelenanemcic/code-cadets-2021/homework_4/controller
 
 go 1.14
 

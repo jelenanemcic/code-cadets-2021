@@ -5,7 +5,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
-	"github.com/superbet-group/code-cadets-2021/lecture_4/01_event_api/internal/api/controllers/models"
+	"github.com/jelenanemcic/code-cadets-2021/homework_4/event_api/internal/api/controllers/models"
 )
 
 // Controller implements handlers for web server requests.
@@ -22,7 +22,7 @@ func NewController(eventUpdateValidator EventUpdateValidator, eventService Event
 	}
 }
 
-// UpdateEvent handlers update event equest.
+// UpdateEvent handlers update event quest.
 func (e *Controller) UpdateEvent() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		var eventUpdateRequestDto models.EventUpdateRequestDto

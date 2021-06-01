@@ -3,8 +3,8 @@ package mappers
 import (
 	"math"
 
-	domainmodels "github.com/superbet-group/code-cadets-2021/lecture_3/03_project/calculator/internal/domain/models"
-	storagemodels "github.com/superbet-group/code-cadets-2021/lecture_3/03_project/calculator/internal/infrastructure/sqlite/models"
+	domainmodels "github.com/jelenanemcic/code-cadets-2021/homework_4/calculator/internal/domain/models"
+	storagemodels "github.com/jelenanemcic/code-cadets-2021/homework_4/calculator/internal/infrastructure/sqlite/models"
 )
 
 // BetMapper maps storage bets to domain bets and vice versa.

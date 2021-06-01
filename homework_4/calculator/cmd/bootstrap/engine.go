@@ -1,14 +1,14 @@
 package bootstrap
 
 import (
-	"github.com/superbet-group/code-cadets-2021/lecture_3/03_project/calculator/cmd/config"
-	"github.com/superbet-group/code-cadets-2021/lecture_3/03_project/calculator/internal/domain/mappers"
-	"github.com/superbet-group/code-cadets-2021/lecture_3/03_project/calculator/internal/engine"
-	"github.com/superbet-group/code-cadets-2021/lecture_3/03_project/calculator/internal/engine/consumer"
-	"github.com/superbet-group/code-cadets-2021/lecture_3/03_project/calculator/internal/engine/handler"
-	"github.com/superbet-group/code-cadets-2021/lecture_3/03_project/calculator/internal/engine/publisher"
-	"github.com/superbet-group/code-cadets-2021/lecture_3/03_project/calculator/internal/infrastructure/rabbitmq"
-	"github.com/superbet-group/code-cadets-2021/lecture_3/03_project/calculator/internal/infrastructure/sqlite"
+	"github.com/jelenanemcic/code-cadets-2021/homework_4/calculator/cmd/config"
+	"github.com/jelenanemcic/code-cadets-2021/homework_4/calculator/internal/domain/mappers"
+	"github.com/jelenanemcic/code-cadets-2021/homework_4/calculator/internal/engine"
+	"github.com/jelenanemcic/code-cadets-2021/homework_4/calculator/internal/engine/consumer"
+	"github.com/jelenanemcic/code-cadets-2021/homework_4/calculator/internal/engine/handler"
+	"github.com/jelenanemcic/code-cadets-2021/homework_4/calculator/internal/engine/publisher"
+	"github.com/jelenanemcic/code-cadets-2021/homework_4/calculator/internal/infrastructure/rabbitmq"
+	"github.com/jelenanemcic/code-cadets-2021/homework_4/calculator/internal/infrastructure/sqlite"
 )
 
 func newBetConsumer(channel rabbitmq.Channel) *rabbitmq.BetConsumer {

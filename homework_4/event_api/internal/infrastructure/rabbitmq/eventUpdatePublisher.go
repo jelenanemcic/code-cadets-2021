@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"log"
 
+	"github.com/jelenanemcic/code-cadets-2021/homework_4/event_api/internal/infrastructure/rabbitmq/models"
 	"github.com/streadway/amqp"
-	"github.com/superbet-group/code-cadets-2021/lecture_4/01_event_api/internal/infrastructure/rabbitmq/models"
 )
 
 const contentTypeTextPlain = "text/plain"

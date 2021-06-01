@@ -3,7 +3,7 @@ package handler
 import (
 	"context"
 
-	domainmodels "github.com/superbet-group/code-cadets-2021/lecture_3/03_project/calculator/internal/domain/models"
+	domainmodels "github.com/jelenanemcic/code-cadets-2021/homework_4/calculator/internal/domain/models"
 )
 
 type BetRepository interface {
