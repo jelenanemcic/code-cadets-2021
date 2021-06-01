@@ -22,7 +22,7 @@ func NewController(betValidator BetValidator, betService BetService) *Controller
 	}
 }
 
-// ProcessBet handlers bet quest.
+// ProcessBet handles bet requests.
 func (e *Controller) ProcessBet() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		var betRequestDto models.BetRequestDto

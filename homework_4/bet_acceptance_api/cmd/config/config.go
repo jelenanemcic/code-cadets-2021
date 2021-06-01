@@ -21,9 +21,9 @@ type apiConfig struct {
 
 type rabbitConfig struct {
 	PublisherBetQueueQueue string `split_words:"true"  default:"bets-received"`
-	PublisherExchange              string `split_words:"true" default:""`
-	PublisherMandatory             bool   `split_words:"true" default:"false"`
-	PublisherImmediate             bool   `split_words:"true" default:"false"`
+	PublisherExchange      string `split_words:"true" default:""`
+	PublisherMandatory     bool   `split_words:"true" default:"false"`
+	PublisherImmediate     bool   `split_words:"true" default:"false"`
 }
 
 // Load loads the configuration on bootstrap, this avoid injecting the same config object
