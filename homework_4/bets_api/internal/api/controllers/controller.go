@@ -21,7 +21,8 @@ func NewController(betService BetService) *Controller {
 // BetByIdHandler handles betById request.
 func (e *Controller) BetByIdHandler() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		bet, exists, err := e.betService.GetBetById(ctx)
+		id := ctx.Param("id")
+		bet, exists, err := e.betService.GetBetById(ctx, id)
 
 		if err != nil {
 			ctx.String(http.StatusBadRequest, err.Error())
@@ -39,7 +40,8 @@ func (e *Controller) BetByIdHandler() gin.HandlerFunc {
 // BetsByUserHandler handles betsByUser request.
 func (e *Controller) BetsByUserHandler() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		bets, err := e.betService.GetBetsByUser(ctx)
+		userId := ctx.Param("id")
+		bets, err := e.betService.GetBetsByUser(ctx, userId)
 
 		if err != nil {
 			ctx.String(http.StatusBadRequest, err.Error())
@@ -57,8 +59,8 @@ func (e *Controller) BetsByUserHandler() gin.HandlerFunc {
 // BetsByStatusHandler handles betsByStatus request.
 func (e *Controller) BetsByStatusHandler() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-
-		bets, err := e.betService.GetBetsByStatus(ctx)
+		status := ctx.Query("status")
+		bets, err := e.betService.GetBetsByStatus(ctx, status)
 
 		if err != nil {
 			ctx.String(http.StatusBadRequest, err.Error())

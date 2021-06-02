@@ -213,7 +213,7 @@ func (r *BetRepository) GetBetsByStatus(ctx context.Context, status string) ([]d
 }
 
 func (r *BetRepository) queryGetBetsByStatus(ctx context.Context, status string) ([]storagemodels.Bet, error) {
-	row, err := r.dbExecutor.QueryContext(ctx, "SELECT * FROM bets WHERE status='"+status+"';")
+	row, err := r.dbExecutor.QueryContext(ctx, "SELECT * FROM bets WHERE status=?;", status)
 	if err != nil {
 		return []storagemodels.Bet{}, err
 	}
