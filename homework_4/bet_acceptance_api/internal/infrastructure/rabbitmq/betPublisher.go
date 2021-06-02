@@ -8,7 +8,7 @@ import (
 	"github.com/streadway/amqp"
 )
 
-const contentTypeTextPlain = "text/plain"
+const contentTypeTextPlain = "application/json"
 
 // BetPublisher handles bet queue publishing.
 type BetPublisher struct {

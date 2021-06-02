@@ -1,10 +1,9 @@
 package validators
 
-import "github.com/jelenanemcic/code-cadets-2021/homework_4/bet_acceptance_api/internal/api/controllers/models"
-
-const maxCoefficient = 10.0
-const minPayment = 2.0
-const maxPayment = 100.0
+import (
+	"github.com/jelenanemcic/code-cadets-2021/homework_4/bet_acceptance_api/cmd/config"
+	"github.com/jelenanemcic/code-cadets-2021/homework_4/bet_acceptance_api/internal/api/controllers/models"
+)
 
 // BetValidator validates bet requests.
 type BetValidator struct{}
@@ -20,8 +19,9 @@ func NewBetValidator() *BetValidator {
 // Payment is >=2.0 && <= 100.0
 func (e *BetValidator) BetIsValid(betRequestDto models.BetRequestDto) bool {
 	if betRequestDto.CustomerId != "" && betRequestDto.SelectionId != "" &&
-		betRequestDto.SelectionCoefficient <= maxCoefficient &&
-		betRequestDto.Payment >= minPayment && betRequestDto.Payment <= maxPayment {
+		betRequestDto.SelectionCoefficient <= config.Cfg.Validator.MaxCoefficient &&
+		betRequestDto.Payment >= config.Cfg.Validator.MinPayment &&
+		betRequestDto.Payment <= config.Cfg.Validator.MaxPayment {
 		return true
 	}
 
