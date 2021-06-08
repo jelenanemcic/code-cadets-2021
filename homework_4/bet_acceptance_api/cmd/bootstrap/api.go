@@ -11,7 +11,7 @@ import (
 )
 
 func newBetValidator() *validators.BetValidator {
-	return validators.NewBetValidator()
+	return validators.NewBetValidator(config.Cfg.Validator.MaxCoefficient, config.Cfg.Validator.MinPayment, config.Cfg.Validator.MaxPayment)
 }
 
 func newBetPublisher(publisher rabbitmq.QueuePublisher) *rabbitmq.BetPublisher {
