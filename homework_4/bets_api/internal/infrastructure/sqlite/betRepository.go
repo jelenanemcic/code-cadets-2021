@@ -97,7 +97,7 @@ func (r *BetRepository) GetBetByID(ctx context.Context, id string) (domainmodels
 }
 
 func (r *BetRepository) queryGetBetByID(ctx context.Context, id string) (storagemodels.Bet, error) {
-	row, err := r.dbExecutor.QueryContext(ctx, "SELECT * FROM bets WHERE id='"+id+"';")
+	row, err := r.dbExecutor.QueryContext(ctx, "SELECT * FROM bets WHERE id=?;", id)
 	if err != nil {
 		return storagemodels.Bet{}, err
 	}
@@ -153,7 +153,7 @@ func (r *BetRepository) GetBetsByUserID(ctx context.Context, userId string) ([]d
 }
 
 func (r *BetRepository) queryGetBetsByUserID(ctx context.Context, userId string) ([]storagemodels.Bet, error) {
-	row, err := r.dbExecutor.QueryContext(ctx, "SELECT * FROM bets WHERE customer_id='"+userId+"';")
+	row, err := r.dbExecutor.QueryContext(ctx, "SELECT * FROM bets WHERE customer_id=?;", userId)
 	if err != nil {
 		return []storagemodels.Bet{}, err
 	}
